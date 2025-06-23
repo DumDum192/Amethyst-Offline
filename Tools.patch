@@ -1,0 +1,12 @@
+--- /Amethyst-Android/app_pojavlauncher/src/main/java/net/kdt/pojavlaunch/Tools.java	Mon Jun 23 18:54:55 2025
++++ /Amethyst-Android/app_pojavlauncher/src/main/java/net/kdt/pojavlaunch/Tools.java	Mon Jun 23 19:06:12 2025
+@@ -1456,8 +1456,3 @@
+     public static boolean hasOnlineProfile(){
+-        for (MinecraftAccount accountToCheck : getAllProfiles()) {
+-            if (!accountToCheck.isLocal() && !accountToCheck.isDemo()) {
+-                return true;
+-            }
+-        }
+-        return false;
++        return true;
+     }

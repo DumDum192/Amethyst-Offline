@@ -1,0 +1,7 @@
+--- /Amethyst-Android/app_pojavlauncher/src/main/java/net/kdt/pojavlaunch/tasks/MinecraftDownloader.java	Mon Jun 23 18:54:55 2025
++++ /Amethyst-Android/app_pojavlauncher/src/main/java/net/kdt/pojavlaunch/tasks/MinecraftDownloader.java	Mon Jun 23 19:06:12 2025
+@@ -88,3 +88,3 @@
+             try {
+-                if(isLocalProfile || !isOnline) {
++                if(!isOnline) {
+                     String versionMessage = realVersion; // Use provided version unless we find its a modded instance
