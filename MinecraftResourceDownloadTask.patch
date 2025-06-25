@@ -1,0 +1,15 @@
+--- /Amethyst-iOS/Natives/MinecraftResourceDownloadTask.m	Wed Jun 25 19:22:16 2025
++++ /Amethyst-iOS/Natives/MinecraftResourceDownloadTask.m	Wed Jun 25 19:24:13 2025
+@@ -316,11 +316,3 @@
+ - (BOOL)checkAccessWithDialog:(BOOL)show {
+-    // for now
+-    BOOL accessible = [BaseAuthenticator.current.authData[@"username"] hasPrefix:@"Demo."] || BaseAuthenticator.current.authData[@"xboxGamertag"] != nil;
+-    if (!accessible) {
+-        [self.progress cancel];
+-        if (show) {
+-            [self finishDownloadWithErrorString:@"Minecraft can't be legally installed when logged in with a local account. Please switch to an online account to continue."];
+-        }
+-    }
+-    return accessible;
++    return true;
+ }
