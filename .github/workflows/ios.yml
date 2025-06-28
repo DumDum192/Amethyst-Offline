@@ -78,6 +78,7 @@ jobs:
           brew install make
           brew install --cask zulu@8
           export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
+          brew install ldid
 
       - name: Patch files
         run: |
