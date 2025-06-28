@@ -72,14 +72,20 @@ jobs:
           git commit -am "CI: Update gl4es"
           git push
 
-      - name: Patch files
+      - name: Install dependencies
         run: |
           brew install gpatch
+          brew install make
+          env /usr/bin/arch -x86_64 /bin/zsh --login
+          brew install openjdk@8
+          export PATH="/usr/local/opt/openjdk@8/bin:$PATH"
+
+      - name: Patch files
+        run: |
           gpatch ./Amethyst-iOS/Natives/MinecraftResourceDownloadTask.m MinecraftResourceDownloadTask.patch
 
       - name: Build for ${{ matrix.platform_name }}
         run: |
-          brew install make
           cd Amethyst-iOS
           export PATH=/opt/homebrew/bin:$PATH
           export SLIMMED=1
