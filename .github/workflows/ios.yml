@@ -79,6 +79,7 @@ jobs:
 
       - name: Build for ${{ matrix.platform_name }}
         run: |
+          brew install make
           cd Amethyst-iOS
           export PATH=/opt/homebrew/bin:$PATH
           export SLIMMED=1
