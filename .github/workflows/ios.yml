@@ -76,9 +76,8 @@ jobs:
         run: |
           brew install gpatch
           brew install make
-          curl -OL https://cdn.azul.com/zulu/bin/zulu8.86.0.25-ca-jdk8.0.452-macosx_aarch64.tar.gz
-          tar -xzvf zulu8.86.0.25-ca-jdk8.0.452-macosx_aarch64.tar.gz
-          export PATH="/Users/runner/work/Amethyst-Offline/Amethyst-Offline/zulu8.86.0.25-ca-jdk8.0.452-macosx_aarch64/zulu-8.jdk/Contents/Home/bin:$PATH"
+          brew install --cask zulu@8
+          export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
 
       - name: Patch files
         run: |
