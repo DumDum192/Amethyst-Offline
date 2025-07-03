@@ -89,6 +89,8 @@ jobs:
           cd Amethyst-iOS
           export PATH=/opt/homebrew/bin:$PATH
           export SLIMMED=1
+          export BRANCH=unknown
+          export COMMIT=unknown
           if [ "${{ matrix.platform_name }}" == "ios" ]; then
             # Build ipa and tipa for iOS
             gmake -j$(sysctl -n hw.ncpu) dsym package PLATFORM=${{ matrix.platform }}
