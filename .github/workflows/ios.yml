@@ -79,7 +79,6 @@ jobs:
           brew install --cask zulu@8
           export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
           brew install ldid
-          brew install glibc
 
       - name: Patch files
         run: |
