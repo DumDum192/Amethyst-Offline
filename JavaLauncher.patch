@@ -1,0 +1,9 @@
+--- /Amethyst-iOS/Natives/JavaLauncher.m	Wed Feb 17 22:12:16 2025
++++ /Amethyst-iOS/Natives/JavaLauncher.m	Wed Feb 17 22:15:34 2025
+@@ -8,6 +8,7 @@
+ #include <string.h>
+ #include <sys/stat.h>
+ #include <unistd.h>
++#include <mach/mach.h>
+
+ #include "utils.h"

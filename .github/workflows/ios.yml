@@ -83,6 +83,7 @@ jobs:
       - name: Patch files
         run: |
           gpatch ./Amethyst-iOS/Natives/MinecraftResourceDownloadTask.m MinecraftResourceDownloadTask.patch
+          gpatch ./Amethyst-iOS/Natives/JavaLauncher.m JavaLauncher.patch
 
       - name: Build for ${{ matrix.platform_name }}
         run: |
