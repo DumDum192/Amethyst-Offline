@@ -1,8 +1,0 @@
-@@ -94,6 +94,7 @@
-
- # Angel Aura Amethyst
- add_executable(AngelAuraAmethyst
-+  stub_symbols.c
-   dyld_bypass_validation.m
-   dyld_patch_platform.m
-   main.m
