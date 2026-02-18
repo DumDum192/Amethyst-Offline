@@ -84,6 +84,7 @@ jobs:
         run: |
           gpatch ./Amethyst-iOS/Natives/MinecraftResourceDownloadTask.m MinecraftResourceDownloadTask.patch
           gpatch ./Amethyst-iOS/Natives/JavaLauncher.m JavaLauncher.patch
+          gpatch ./Amethyst-iOS/Natives/CMakeLists.txt CMakeLists.patch
 
       - name: Build for ${{ matrix.platform_name }}
         run: |

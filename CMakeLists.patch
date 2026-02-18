@@ -1,0 +1,11 @@
+--- /Amethyst-iOS/Natives/CMakeLists.txt	Wed Feb 17 21:32:41 2025
++++ /Amethyst-iOS/Natives/CMakeLists.txt	Wed Feb 17 21:37:59 2025
+@@ -7,7 +7,7 @@
+ set(CMAKE_C_FLAGS_DEBUG "-funwind-tables -g")
+
+ if("${CMAKE_HOST_SYSTEM_NAME}" MATCHES "Linux|^GNU$|Android")
+-set(GLOBAL_LDFLAGS "-isysroot ${CMAKE_OSX_SYSROOT} -Wl,-syslibroot,${CMAKE_OSX_SYSROOT} -fuse-ld=lld")
++set(GLOBAL_LDFLAGS "-isysroot ${CMAKE_OSX_SYSROOT} -Wl,-U,__UISolariumEnabled,-syslibroot,${CMAKE_OSX_SYSROOT} -fuse-ld=lld")
+ set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${GLOBAL_LDFLAGS}")
+ set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} ${GLOBAL_LDFLAGS}")
+ endif()
