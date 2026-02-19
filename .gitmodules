@@ -1,6 +1,8 @@
 [submodule "Amethyst-Android"]
 	path = Amethyst-Android
 	url = https://github.com/AngelAuraMC/Amethyst-Android
+	branch = v3_openjdk
 [submodule "Amethyst-iOS"]
 	path = Amethyst-iOS
 	url = https://github.com/AngelAuraMC/Amethyst-iOS
+	branch = main

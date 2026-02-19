@@ -1,0 +1,39 @@
+name: Update Submodules
+
+on:
+  schedule:
+    - cron: '0 3 1 * *'  # 03:00 UTC on the 1st of every month
+  workflow_dispatch:
+
+jobs:
+  update-submodules:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Update submodules to latest remote
+        run: |
+          git submodule update --remote --recursive
+          git submodule foreach git fetch origin
+
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Commit changes
+        run: |
+          git add .
+          git diff --cached --quiet || git commit -m "chore: monthly submodule update"
+
+      - name: Push changes
+        run: |
+          git push
