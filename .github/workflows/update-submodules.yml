@@ -1,4 +1,8 @@
-name: Update Submodules
+# Source - https://stackoverflow.com/a/67059629
+# Posted by Artur Ampilogov, modified by community. See post 'Timeline' for change history
+# Retrieved 2026-04-07, License - CC BY-SA 4.0
+
+name: 'Submodules Sync'
 
 on:
   schedule:
@@ -6,34 +10,32 @@ on:
   workflow_dispatch:
 
 jobs:
-  update-submodules:
+  sync:
+    name: 'Submodules Sync'
     runs-on: ubuntu-latest
 
-    permissions:
-      contents: write
+    # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
+    defaults:
+      run:
+        shell: bash
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          submodules: recursive
-          token: ${{ secrets.GITHUB_TOKEN }}
+    # Checkout the repository to the GitHub Actions runner
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        token: ${{ secrets.CI_TOKEN }}
+        submodules: true
 
-      - name: Update submodules to latest remote
-        run: |
-          git submodule update --remote --recursive
-          git submodule foreach git fetch origin
+    # Update references
+    - name: Git Submodule Update
+      run: |
+        git pull --recurse-submodules
+        git submodule update --remote --recursive
 
-      - name: Configure Git
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-
-      - name: Commit changes
-        run: |
-          git add .
-          git diff --cached --quiet || git commit -m "chore: monthly submodule update"
-
-      - name: Push changes
-        run: |
-          git push
+    - name: Commit update
+      run: |
+        git config --global user.name 'Git bot'
+        git config --global user.email 'bot@noreply.github.com'
+        git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+        git commit -am "Auto updated submodule references" && git push || echo "No changes to commit"
