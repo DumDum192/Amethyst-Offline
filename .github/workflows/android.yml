@@ -29,16 +29,6 @@ jobs:
           branch: buildjre8
           name: jre8-pojav
 
-      - name: Get JRE17
-        uses: dawidd6/action-download-artifact@v9
-        with:
-          workflow: build.yml
-          path: Amethyst-Android/app_pojavlauncher/src/main/assets/components/jre-new
-          workflow_conclusion: success
-          repo: AngelAuraMC/angelauramc-openjdk-build
-          branch: buildjre17-21
-          name: jre17-pojav
-
       - uses: gradle/actions/setup-gradle@v4
         with:
           validate-wrappers: false
