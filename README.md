@@ -1,7 +1,7 @@
 # Amethyst-Offline
-![Android](https://img.shields.io/badge/Download-Android-green?style=for-the-badge&logoSize=auto&link=https%3A%2F%2Fgithub.com%2FDumDum192%2FAmethyst-Offline%2Factions%2Fworkflows%2Fandroid.yml)
+[![Android](https://img.shields.io/badge/Download-Android-green?style=for-the-badge&logoSize=auto&link=https%3A%2F%2Fgithub.com%2FDumDum192%2FAmethyst-Offline%2Factions%2Fworkflows%2Fandroid.yml)](https://github.com/DumDum192/Amethyst-Offline/actions/workflows/android.yml)
 &nbsp;
-![iOS](https://img.shields.io/badge/Download-iOS-green?style=for-the-badge&logoSize=auto&link=https%3A%2F%2Fgithub.com%2FDumDum192%2FAmethyst-Offline%2Factions%2Fworkflows%2Fios.yml)
+[![iOS](https://img.shields.io/badge/Download-iOS-green?style=for-the-badge&logoSize=auto&link=https%3A%2F%2Fgithub.com%2FDumDum192%2FAmethyst-Offline%2Factions%2Fworkflows%2Fios.yml)](https://github.com/DumDum192/Amethyst-Offline/actions/workflows/ios.yml)
 
 An offline version of [Amethyst](https://wiki.angelauramc.dev/), a MC Launcher based on PojavLauncher.
 
