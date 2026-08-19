@@ -32,7 +32,7 @@ jobs:
       - uses: gradle/actions/setup-gradle@v4
         with:
           validate-wrappers: false
-          gradle-version: "8.11"
+          gradle-version: "9.6.1"
 
       - name: Build JRE JAR files
         run: |
