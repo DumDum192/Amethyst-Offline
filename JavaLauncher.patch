@@ -1,9 +1,48 @@
---- /Amethyst-iOS/Natives/JavaLauncher.m	Tue Feb 17 22:12:16 2025
-+++ /Amethyst-iOS/Natives/JavaLauncher.m	Tue Feb 17 22:15:34 2025
-@@ -8,6 +8,7 @@
- #include <string.h>
- #include <sys/stat.h>
- #include <unistd.h>
-+#include <mach/mach.h>
-
- #include "utils.h"
+--- a/Amethyst-Android/app_pojavlauncher/src/main/java/net/kdt/pojavlaunch/utils/JREUtils.java
++++ b/Amethyst-Android/app_pojavlauncher/src/main/java/net/kdt/pojavlaunch/utils/JREUtils.java
+@@ -359,8 +359,28 @@ public class JREUtils {
+         purgeArg(userArgs,"-Xms");
+         purgeArg(userArgs,"-Xmx");
+         purgeArg(userArgs,"-d32");
+         purgeArg(userArgs,"-d64");
+         purgeArg(userArgs, "-Xint");
+         purgeArg(userArgs, "-XX:+UseTransparentHugePages");
+         purgeArg(userArgs, "-XX:+UseLargePagesInMetaspace");
+         purgeArg(userArgs, "-XX:+UseLargePages");
+         purgeArg(userArgs, "-Dorg.lwjgl.opengl.libname");
+         // Don't let the user specify a custom Freetype library (as the user is unlikely to specify a version compiled for Android)
+         purgeArg(userArgs, "-Dorg.lwjgl.freetype.libname");
+         // Overridden by us to specify the exact number of cores that the android system has
+         purgeArg(userArgs, "-XX:ActiveProcessorCount");
+ 
+-        //Add automatically generated args
+-        userArgs.add("-Xms" + LauncherPreferences.PREF_RAM_ALLOCATION + "M");
+-        userArgs.add("-Xmx" + LauncherPreferences.PREF_RAM_ALLOCATION + "M");
++        // =========================================================================
++        // Moto G96 5G (Snapdragon 7s Gen 2 / 8GB RAM / 500+ Mods) Optimized JVM
++        // =========================================================================
++        // RAM Allocation: Min 3500MB, Max 5600MB (Safe LMK Cap for Android 15)
++        userArgs.add("-Xms3500M");
++        userArgs.add("-Xmx5600M");
++
++        // G1 Garbage Collector & 32MB Region Tuning for Heavy Modpacks
++        userArgs.add("-XX:+UseG1GC");
++        userArgs.add("-XX:+UnlockExperimentalVMOptions");
++        userArgs.add("-XX:+AlwaysPreTouch");
++        userArgs.add("-XX:G1HeapRegionSize=32M");
++        userArgs.add("-XX:G1ReservePercent=15");
++        userArgs.add("-XX:InitiatingHeapOccupancyPercent=45");
++        userArgs.add("-XX:MaxGCPauseMillis=30");
++        userArgs.add("-XX:+DisableExplicitGC");
++        userArgs.add("-XX:+UseStringDeduplication");
++
++        // CPU Threading & Core Affinity for Snapdragon 7s Gen 2 (8 Cores)
++        userArgs.add("-XX:ActiveProcessorCount=8");
++        userArgs.add("-XX:G1MixedGCCountTarget=8");
++        userArgs.add("-XX:G1NewSizePercent=20");
++        userArgs.add("-XX:G1MaxNewSizePercent=30");
++        // =========================================================================
++
+         if(LOCAL_RENDERER != null) userArgs.add("-Dorg.lwjgl.opengl.libname=" + graphicsLib);
+         // Force LWJGL to use the Freetype library intended for it, instead of using the one
+         // that we ship with Java (since it may be older than what's needed)
